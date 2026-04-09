@@ -1,0 +1,4 @@
+[
+  {"ip": "8.8.8.8", "port": 443, "service": "https"},
+  {"ip": "1.1.1.1", "port": 3389, "service": "rdp"}
+]
