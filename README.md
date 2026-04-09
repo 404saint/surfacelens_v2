@@ -24,22 +24,54 @@ SurfaceLens provides a **tactical map** of your exposure, allowing you to move f
 
 ## 🏗️ Architecture Overview
 
-<p align="center">
-  <img src="https://via.placeholder.com/800x400?text=SurfaceLens+V2+Architecture+Diagram+Placeholder" alt="SurfaceLens V2 Architecture" width="600">
-</p>
+```mermaid
+%%{init: {'theme': 'base', 'themeVariables': { 'primaryColor': '#0a0a0c', 'primaryTextColor': '#e0e6ed', 'primaryBorderColor': '#00f2ff', 'lineColor': '#888', 'secondaryColor': '#16161a', 'tertiaryColor': '#16161a'}}}%%
+graph TD
+    Start[Start: Launch SurfaceLens CLI]
+    ProvConfig{Provider Selection:<br/>LeakIX, Shodan, Censys,<br/>CriminalIP, Local, Active}
+    QueryIn[Input: Query &<br/>Corporate Domain]
+    Discovery[Stage 1: Asset Discovery]
+    
+    subgraph Pipeline [Stage 2: Intelligence Pipeline]
+        mod_delta[1. Delta tracking<br/>First/Last Seen]
+        mod_ssl[2. SSL Auditor<br/>TLS/Cert Verification]
+        mod_dns[3. DNS Correlator<br/>Attribution/Shadow IT]
+        mod_hunt[4. Sensitive File Hunter<br/>Robots/Env/Exposures]
+        mod_finger[5. Fingerprinter<br/>Tech Identification]
+        mod_risk[6. Risk Prioritizer<br/>Weighted Scoring]
+    end
+
+    DB[(SQLite Backend<br/>Enriched Inventory)]
+    
+    Terminal[CLI Output<br/>Real-time Analysis]
+    Markdown[Markdown Reports<br/>Auditor Ready]
+    Dashboard[Web Dashboard<br/>Command Center]
+
+    Start --> ProvConfig
+    ProvConfig --> QueryIn
+    QueryIn --> Discovery
+    Discovery --> mod_delta
+    mod_delta --> mod_ssl
+    mod_ssl --> mod_dns
+    mod_dns --> mod_hunt
+    mod_hunt --> mod_finger
+    mod_finger --> mod_risk
+    mod_risk --> DB
+    
+    DB --> Terminal
+    DB --> Markdown
+    DB --> Dashboard
+```
 
 ---
 
 ## ⚙️ How the Pipeline Works
 
-1. **Discovery (Multi-Source)**
-   Aggregate raw asset data from **LeakIX, Shodan, Censys, CriminalIP**, or **Local Datasets**.
+1. **Discovery (Multi-Source)** Aggregate raw asset data from **LeakIX, Shodan, Censys, CriminalIP**, or **Local Datasets**.
 
-2. **Deduplication & Delta Tracking**
-   The engine cross-references findings with a local SQLite database to track **First Seen** timestamps and identify new exposures.
+2. **Deduplication & Delta Tracking** The engine cross-references findings with a local SQLite database to track **First Seen** timestamps and identify new exposures.
 
-3. **Intelligence Pipeline (The "Brain")**
-   Every asset is passed through five specialized diagnostic modules:
+3. **Intelligence Pipeline (The "Brain")** Every asset is passed through specialized diagnostic modules:
    * **SSL Auditor:** Extracts certificates and verifies TLS protocols.
    * **DNS Correlator:** Performs reverse DNS lookups and checks for domain affiliation/Shadow IT.
    * **Fingerprinter:** Identifies web servers and technologies (Cloudflare, Nginx, etc.).
@@ -57,7 +89,7 @@ SurfaceLens provides a **tactical map** of your exposure, allowing you to move f
 
 ```bash
 # Clone the repository
-git clone [https://github.com/404saint/surfacelens_v2.git](https://github.com/404saint/surfacelens_v2.git)
+git clone https://github.com/404saint/surfacelens_v2.git
 cd surfacelens_v2
 
 # Install dependencies
@@ -95,8 +127,6 @@ Access the UI at: `http://127.0.0.1:5000`
 
 ## 🛡️ Ethical Use
 SurfaceLens is designed for **defensive security research** and **authorized auditing**. It uses passive data sources and non-intrusive active checks. Do not use this tool on infrastructure you do not have explicit permission to assess.
-
----
 
 ## 📄 License
 Distributed under the MIT License. See `LICENSE` for more information.
