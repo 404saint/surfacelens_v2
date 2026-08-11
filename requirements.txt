@@ -52,7 +52,7 @@ oauthlib==3.2.2
 olefile==0.46
 pexpect==4.9.0
 phonenumbers==8.12.57
-pillow==10.2.0
+pillow==12.3.0
 psutil==7.2.2
 ptyprocess==0.7.0
 pycairo==1.25.1
