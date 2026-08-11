@@ -41,7 +41,7 @@ lazr.restfulclient==0.14.6
 lazr.uri==1.0.6
 libvirt-python==10.0.0
 louis==3.29.0
-lxml==5.2.1
+lxml==6.1.0
 markdown-it-py==3.0.0
 MarkupSafe==3.0.3
 mccabe==0.7.0
