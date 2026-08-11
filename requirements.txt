@@ -61,7 +61,7 @@ pycups==2.0.1
 pyflakes==3.2.0
 Pygments==2.17.2
 PyGObject==3.48.2
-PyJWT==2.7.0
+PyJWT==2.13.0
 pymodbus==3.12.0
 pyparsing==3.1.1
 PyQt6==6.6.1
