@@ -76,7 +76,7 @@ python-whois==0.9.6
 pytz==2024.1
 pyxdg==0.28
 PyYAML==6.0.1
-requests==2.31.0
+requests==2.33.0
 requests-file==3.0.1
 rich==13.7.1
 setuptools==83.0.0
