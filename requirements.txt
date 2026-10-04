@@ -59,7 +59,7 @@ pycairo==1.25.1
 pycodestyle==2.11.1
 pycups==2.0.1
 pyflakes==3.2.0
-Pygments==2.17.2
+Pygments==2.20.0
 PyGObject==3.48.2
 PyJWT==2.13.0
 pymodbus==3.12.0
